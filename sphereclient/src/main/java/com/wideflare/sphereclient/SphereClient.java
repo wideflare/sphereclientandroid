@@ -282,7 +282,7 @@ public class SphereClient {
                             getItems.onResult(info.getString("appName") ,info.getString("appIcon") , info.getString("categoryName") , info.getString("categoryThumbnail") ,info.getInt("totalItemCount")  ,  info.getInt("itemsInThisPage") , info.getInt("itemsPerPage")  , items);
 
                         }else {
-                            getItems.onEmpty();
+                            getItems.onEmpty(info.getString("appName") ,info.getString("appIcon") , info.getString("categoryName") , info.getString("categoryThumbnail"));
                         }
 
                     }

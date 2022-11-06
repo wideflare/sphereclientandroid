@@ -10,7 +10,7 @@ public interface GetItems {
     public void onAppLocation(String appLocation , double latitude , double longitude );
     public void onNextPage();
     public void onHomeCover(String cover);
-    public void onEmpty();
+    public void onEmpty(String appName, String appIcon, String categoryName, String categoryIcon);
     public void onError(VolleyError error);
     public void onUnderConstruction();
     public void onNotActive();
