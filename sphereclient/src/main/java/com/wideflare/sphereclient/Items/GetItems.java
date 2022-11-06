@@ -1,5 +1,7 @@
 package com.wideflare.sphereclient.Items;
 
+import com.android.volley.VolleyError;
+
 public interface GetItems {
     public void onResult(String appName , String appIcon  , String categoryName ,String categoryIcon  , int totalItemCount , int itemsInThisPage , int itemsPerPage , Items[] items);
     public void onLoading();
@@ -7,9 +9,9 @@ public interface GetItems {
     public void onAnnouncement(String announcementBody);
     public void onAppLocation(String appLocation , double latitude , double longitude );
     public void onNextPage();
-    public void onCover(String cover);
+    public void onHomeCover(String cover);
     public void onEmpty();
-    public void onError();
+    public void onError(VolleyError error);
     public void onUnderConstruction();
     public void onNotActive();
     public void onNotExist();

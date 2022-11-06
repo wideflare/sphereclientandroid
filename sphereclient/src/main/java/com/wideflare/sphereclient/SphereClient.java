@@ -88,32 +88,11 @@ public class SphereClient {
                         }
 
                         if(!info.getString("homeCover").isEmpty()){
-                            getItem.onCover(info.getString("homeCover"));
+                            getItem.onHomeCover(info.getString("homeCover"));
                         }
 
 
-
-
-
-//                        if (itemsInThisPage != 0) {
-//                            JSONArray _items = jobj.getJSONArray("items");
-//                            Items items[] = new Items[itemsInThisPage];
-//
-//                            for (int i = 0; i < itemsInThisPage; i++) {
-//                                items[i] = new Items(
-//                                        _items.getJSONObject(i).getString("itemName"),
-//                                        _items.getJSONObject(i).getString("itemId"),
-//                                        _items.getJSONObject(i).getJSONObject("extras"),
-//                                        _items.getJSONObject(i).getString("itemImage")
-//                                );
-//
-////                            }String appName , String appIcon  , String cover , String itemName , JSONObject extras  , String body , String itemCategoryName , String [] itemImages , String itemImage
-                                getItem.onResult(info.getString("appName"), info.getString("appIcon"), info.getString("homeCover"), jobj.getString("itemName"), jobj.getJSONObject("extras"), jobj.getString("body"), jobj.getString("itemCategoryName"), jobj.getJSONObject("itemImages"), jobj.getString("itemImage"));
-
-//                            }
-
-//                        }
-
+                                getItem.onResult(info.getString("appName"), info.getString("appIcon"), jobj.getString("itemName"), jobj.getJSONObject("extras"), jobj.getString("body"), jobj.getString("itemCategoryName"), jobj.getJSONObject("itemImages"), jobj.getString("itemImage"));
                     }
 
                     }catch(JSONException e){
@@ -125,7 +104,7 @@ public class SphereClient {
 
                 @Override
                 public void error (VolleyError error){
-                    getItem.onError();
+                    getItem.onError(error);
                 }
 
         }
@@ -176,7 +155,7 @@ public class SphereClient {
 
                         int itemsInThisPage = Integer.parseInt(info.getString("itemsInThisPage"));
 
-                        int totalItemCount = Integer.parseInt( info.getString("totalItemCount"));
+                        
 
 
 
@@ -219,7 +198,7 @@ public class SphereClient {
 
             @Override
             public void error(VolleyError error) {
-                getItemsLoadMore.onError();
+                getItemsLoadMore.onError(error);
             }
         });
     }
@@ -268,7 +247,7 @@ public class SphereClient {
 
                         int itemsInThisPage = Integer.parseInt(info.getString("itemsInThisPage"));
 
-                        int totalItemCount = Integer.parseInt( info.getString("totalItemCount"));
+                        
 
 
                         if(jobj.getJSONObject("announcement").getBoolean("status")){
@@ -277,7 +256,7 @@ public class SphereClient {
                         }
 
                         if(!info.getString("homeCover").isEmpty()){
-                            getItems.onCover(info.getString("homeCover"));
+                            getItems.onHomeCover(info.getString("homeCover"));
                         }
 
 
@@ -317,7 +296,7 @@ public class SphereClient {
 
             @Override
             public void error(VolleyError error) {
-                getItems.onError();
+                getItems.onError(error);
             }
         });
 
@@ -366,7 +345,7 @@ public class SphereClient {
 
                         int itemsInThisPage = Integer.parseInt(info.getString("itemsInThisPage"));
 
-                        int totalItemCount = Integer.parseInt( info.getString("totalItemCount"));
+                        
 
                         if(nextPage_.getBoolean("status")) {
                             getLauncherLoadMore.onNextPage();
@@ -404,7 +383,7 @@ public class SphereClient {
 
             @Override
             public void error(VolleyError error) {
-                getLauncherLoadMore.onError();
+                getLauncherLoadMore.onError(error);
             }
         });
     }
@@ -453,7 +432,7 @@ public class SphereClient {
 
                         int itemsInThisPage = Integer.parseInt(info.getString("itemsInThisPage"));
 
-                        int totalItemCount = Integer.parseInt( info.getString("totalItemCount"));
+                        
 
 
                         if(jobj.getJSONObject("announcement").getBoolean("status")){
@@ -462,7 +441,7 @@ public class SphereClient {
                         }
 
                         if(!info.getString("launcherCover").isEmpty()){
-                            getLauncher.onCover(info.getString("launcherCover"));
+                            getLauncher.onLauncherCover(info.getString("launcherCover"));
                         }
 
 
@@ -488,7 +467,7 @@ public class SphereClient {
                              getLauncher.onResult(info.getString("appName") ,info.getString("appIcon") , info.getString("launcherName") , info.getString("launcherThumbnail") ,info.getInt("totalItemCount")  ,  info.getInt("itemsInThisPage") , info.getInt("itemsPerPage")  , items);
 
                         }else {
-                            getLauncher.onEmpty();
+                            getLauncher.onEmpty(info.getString("appName") ,info.getString("appIcon") , info.getString("launcherName") , info.getString("launcherThumbnail"));
                         }
 
                     }
@@ -502,7 +481,7 @@ public class SphereClient {
 
             @Override
             public void error(VolleyError error) {
-                getLauncher.onError();
+                getLauncher.onError(error);
             }
         });
 
@@ -550,7 +529,7 @@ public class SphereClient {
 
                         int itemsInThisPage = Integer.parseInt(info.getString("itemsInThisPage"));
 
-                        int totalItemCount = Integer.parseInt( info.getString("totalItemCount"));
+                        
 
                         if(nextPage_.getBoolean("status")) {
                             getHomeLoadMore.onNextPage();
@@ -592,7 +571,7 @@ public class SphereClient {
 
             @Override
             public void error(VolleyError error) {
-                getHomeLoadMore.onError();
+                getHomeLoadMore.onError(error);
             }
         });
 
@@ -642,7 +621,7 @@ public class SphereClient {
 
                             int itemsInThisPage = Integer.parseInt(info.getString("itemsInThisPage"));
 
-                            int totalItemCount = Integer.parseInt( info.getString("totalItemCount"));
+                            
 
 
                             if(jobj.getJSONObject("popup").getBoolean("status")){
@@ -661,7 +640,7 @@ public class SphereClient {
                             }
 
                             if(!info.getString("homeCover").isEmpty()){
-                                home.onCover(info.getString("homeCover"));
+                                home.onHomeCover(info.getString("homeCover"));
                             }
 
 
@@ -688,7 +667,7 @@ public class SphereClient {
                                 home.onResult(info.getString("appName") ,info.getString("appIcon") ,info.getInt("totalItemCount")  ,  info.getInt("itemsInThisPage") , info.getInt("itemsPerPage")  , items);
 
                             }else {
-                               home.onEmpty();
+                               home.onEmpty(info.getString("appName") ,info.getString("appIcon") );
                             }
 
 
@@ -705,7 +684,7 @@ public class SphereClient {
 
                 @Override
                 public void error(VolleyError error) {
-                        home.onError();
+                        home.onError(error);
                 }
             });
         }
