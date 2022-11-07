@@ -3,6 +3,7 @@ package com.wideflare.sphereclient;
 import android.content.Context;
 
 import com.android.volley.VolleyError;
+
 import com.wideflare.sphereclient.Home.GetHome;
 import com.wideflare.sphereclient.Home.GetHomeLoadMore;
 import com.wideflare.sphereclient.Home.HomeItems;
@@ -13,6 +14,8 @@ import com.wideflare.sphereclient.Items.Items;
 import com.wideflare.sphereclient.Launcher.GetLauncher;
 import com.wideflare.sphereclient.Launcher.GetLauncherLoadMore;
 import com.wideflare.sphereclient.Launcher.LauncherItems;
+
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,7 +28,7 @@ public class SphereClient {
     private int homePageNumber = 1;
     private int launcherPageNumber = 1;
     private int itemsPageNumber = 1;
-    private String id ;
+
 
 
    public SphereClient(String APP_KEY , Context context){
@@ -33,19 +36,19 @@ public class SphereClient {
         this.context  = context;
     }
 
-    public SphereClient(String APP_KEY , Context context  , String id){
-        this.APP_KEY = APP_KEY;
-        this.context  = context;
-        this.id = id;
-    }
+//    public SphereClient(String APP_KEY , Context context  , String id){
+//        this.APP_KEY = APP_KEY;
+//        this.context  = context;
+//        this.id = id;
+//    }
 
 
 
     ///////for item
 
-    public void getItem(GetItem getItem) {
+    public void getItem(GetItem getItem , String itemId) {
         getItem.onLoading();
-        String url = "https://api.wideflare.com/?action=getItem&appKey="+APP_KEY+"&itemId="+id;
+        String url = "https://api.wideflare.com/?action=getItem&appKey="+APP_KEY+"&itemId="+itemId;
         new VolleyGet(context, url, new Fetch() {
             @Override
             public void getData(String response) {
@@ -114,10 +117,10 @@ public class SphereClient {
 
     ///////for items
     //loads more items belonging to this category
-    public void getItemsLoadMore(GetItemsLoadMore getItemsLoadMore){
+    public void getItemsLoadMore(GetItemsLoadMore getItemsLoadMore , String itemCategoryId){
         itemsPageNumber++;
         getItemsLoadMore.onLoading();
-        String url = "https://api.wideflare.com/?action=getItems&appKey="+APP_KEY+"&page="+itemsPageNumber+"&categoryId="+id;
+        String url = "https://api.wideflare.com/?action=getItems&appKey="+APP_KEY+"&page="+itemsPageNumber+"&categoryId="+itemCategoryId;
         new VolleyGet(context, url, new Fetch() {
             @Override
             public void getData(String response) {
@@ -204,9 +207,10 @@ public class SphereClient {
     }
 
     //loads items belonging to a category
-    public void getItems(GetItems getItems){
+    public void getItems(GetItems getItems , String itemCategoryId){
+       itemsPageNumber = 1 ;
         getItems.onLoading();
-        String url = "https://api.wideflare.com/?action=getItems&appKey="+APP_KEY+"&page=1&categoryId="+id;
+        String url = "https://api.wideflare.com/?action=getItems&appKey="+APP_KEY+"&page=1&categoryId="+itemCategoryId;
         new VolleyGet(context, url, new Fetch() {
             @Override
             public void getData(String response) {
@@ -306,10 +310,10 @@ public class SphereClient {
 
     ///////for launcher
     //loads more launcher items
-    public void getLauncherLoadMore(GetLauncherLoadMore getLauncherLoadMore){
+    public void getLauncherLoadMore(GetLauncherLoadMore getLauncherLoadMore , String launcherId){
        launcherPageNumber++;
         getLauncherLoadMore.onLoading();
-        String url = "https://api.wideflare.com/?action=getLauncher&appKey="+APP_KEY+"&page="+launcherPageNumber+"&launcherId="+id;
+        String url = "https://api.wideflare.com/?action=getLauncher&appKey="+APP_KEY+"&page="+launcherPageNumber+"&launcherId="+launcherId;
         new VolleyGet(context, url, new Fetch() {
             @Override
             public void getData(String response) {
@@ -389,9 +393,10 @@ public class SphereClient {
     }
 
     //loads launcher with its items
-    public void getLauncher(GetLauncher getLauncher){
+    public void getLauncher(GetLauncher getLauncher , String launcherId){
+       launcherPageNumber = 1;
         getLauncher.onLoading();
-        String url = "https://api.wideflare.com/?action=getLauncher&appKey="+APP_KEY+"&page=1&launcherId="+id;
+        String url = "https://api.wideflare.com/?action=getLauncher&appKey="+APP_KEY+"&page=1&launcherId="+launcherId;
         new VolleyGet(context, url, new Fetch() {
             @Override
             public void getData(String response) {
